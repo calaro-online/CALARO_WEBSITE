@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALARO | AI-Powered Voice Nutrition & Health Blueprint</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f8faf9',
+              100: '#eef3ef',
+              200: '#d5e2d7',
+              500: '#2e7d32', // Core Forest Green
+              600: '#1b5e20',
+              700: '#113c14',
+            },
+            accent: {
+              400: '#a3e635', // Lime Green
+              500: '#84cc16',
+              600: '#65a30d',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
+    }
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.3); opacity: 0.15; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(5px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .bg-blob-1 {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(46, 125, 50, 0.08) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(100px);
+      z-index: -1;
+      animation: float 25s infinite alternate ease-in-out;
+    }
+    .bg-blob-2 {
+      position: absolute;
+      bottom: 10%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(132, 204, 22, 0.07) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(120px);
+      z-index: -1;
+      animation: float 30s infinite alternate-reverse ease-in-out;
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(46, 125, 50, 0.05);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(46, 125, 50, 0.06);
+    }
+    .faq-answer {
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="bg-brand-50 text-slate-800 font-sans selection:bg-brand-200 overflow-x-hidden">
+  
+  <div class="relative overflow-hidden min-h-screen">
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+
+    <!-- Header / Navigation Container -->
+    <div class="fixed top-0 left-0 right-0 z-50">
+      <!-- Announcement Banner (Under Development Notice) -->
+      <div class="bg-gradient-to-r from-brand-600 via-brand-700 to-accent-600 text-white text-center py-2.5 px-4 text-[11px] sm:text-xs font-bold flex flex-col sm:flex-row items-center justify-center gap-2 shadow-md relative z-50 border-b border-brand-500/10">
+        <span class="inline-flex items-center gap-1 bg-white/20 px-2 py-0.5 rounded-full text-[9px] uppercase font-extrabold tracking-wider">Early Development</span>
+        <span>CALARO is currently in active private beta development. Early access registration is open!</span>
+        <a href="#early-access" class="underline hover:text-accent-300 transition-colors font-extrabold flex items-center gap-0.5">Claim Free Slot <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+      </div>
+      
+      <!-- Navigation Bar -->
+      <nav class="glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <a href="#" class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+              <i data-lucide="activity" class="w-6 h-6"></i>
+            </div>
+            <span class="font-outfit font-extrabold text-2xl tracking-tight text-brand-500">CALARO</span>
+          </a>
+
+          <!-- Desktop Links -->
+          <div class="hidden md:flex items-center gap-6 lg:gap-8 font-semibold text-slate-600">
+            <a href="#features" class="hover:text-brand-500 transition-colors">Features</a>
+            <a href="#stepper" class="hover:text-brand-500 transition-colors">How It Works</a>
+            <a href="#voice-demo" class="hover:text-brand-500 transition-colors">Voice Simulator</a>
+            <a href="#calculator" class="hover:text-brand-500 transition-colors">Target Calculator</a>
+            <a href="#comparison" class="hover:text-brand-500 transition-colors">Why CALARO</a>
+            <a href="#faq" class="hover:text-brand-500 transition-colors">FAQs</a>
+            <a href="mailto:calaro.work@gmail.com" class="hover:text-brand-500 transition-colors flex items-center gap-1.5"><i data-lucide="mail" class="w-4 h-4"></i> Contact</a>
+          </div>
+
+          <!-- CTA & Mobile Trigger -->
+          <div class="flex items-center gap-3">
+            <a href="#early-access" class="hidden sm:flex px-5 py-2.5 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-semibold rounded-xl shadow-md shadow-brand-500/10 hover:shadow-lg transition-all duration-200 items-center gap-2">
+              Request Invite <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </a>
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 hover:text-brand-500 transition-colors focus:outline-none" aria-label="Toggle Menu">
+              <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+      <div class="absolute right-0 top-0 bottom-0 w-64 bg-white p-6 shadow-2xl flex flex-col justify-between border-l border-brand-100">
+        <div class="space-y-6 pt-24">
+          <div class="flex flex-col gap-4 font-bold text-slate-700">
+            <a href="#features" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-slate-400"></i> Features</a>
+            <a href="#stepper" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="help-circle" class="w-4 h-4 text-slate-400"></i> How It Works</a>
+            <a href="#voice-demo" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="mic" class="w-4 h-4 text-slate-400"></i> Voice Simulator</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="calculator" class="w-4 h-4 text-slate-400"></i> Target Calculator</a>
+            <a href="#comparison" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="scale" class="w-4 h-4 text-slate-400"></i> Why Us</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-slate-400"></i> FAQs</a>
+            <a href="mailto:calaro.work@gmail.com" onclick="toggleMobileMenu()" class="hover:text-brand-500 transition-colors p-2.5 rounded-xl hover:bg-brand-50 flex items-center gap-2 text-slate-700 hover:text-brand-600"><i data-lucide="mail" class="w-4 h-4 text-slate-400"></i> Contact</a>
+          </div>
+        </div>
+        <div class="pt-6 border-t border-slate-100">
+          <a href="#early-access" onclick="toggleMobileMenu()" class="w-full py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-md text-center flex items-center justify-center gap-2">
+            Request Access Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="pt-44 pb-20 px-6 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Copy -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-6">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Next-Gen Health Tracking
+          </div>
+          <h1 class="font-outfit font-extrabold text-4xl sm:text-6xl tracking-tight text-slate-900 leading-[1.1] mb-6">
+            Precision Nutrition, <br>
+            <span class="bg-gradient-to-r from-brand-600 to-accent-600 bg-clip-text text-transparent">Powered by Voice AI</span>
+          </h1>
+          <p class="text-lg text-slate-600 font-medium leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            Stop typing ingredients. Just speak to CALARO naturally. Our voice-first assistant transcribes, parses calories, and configures your personalized health blueprint in real-time.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#voice-demo" class="w-full sm:w-auto px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/25 transition-all duration-200 text-center flex items-center justify-center gap-2">
+              Try Voice Demo <i data-lucide="mic" class="w-5 h-5"></i>
+            </a>
+            <a href="#calculator" class="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 hover:border-brand-500 text-slate-800 hover:text-brand-500 font-bold rounded-2xl transition-all duration-200 text-center">
+              Target Calculator
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Card Mockup -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="w-full max-w-[360px] glass-card rounded-[32px] p-6 shadow-2xl relative z-10 border border-white/50">
+            <!-- Screen Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-600">
+                  <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xs">Aesthetic User</h4>
+                  <p class="text-[9px] text-slate-400">Biological Age: 21</p>
+                </div>
+              </div>
+              <span class="text-[10px] bg-accent-500/10 text-accent-700 font-bold px-2 py-0.5 rounded-full">ACTIVE STREAK</span>
+            </div>
+
+            <!-- SVG Gauge Mockup -->
+            <div class="flex justify-center mb-6">
+              <div class="relative w-40 h-40 flex items-center justify-center">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" stroke="#f1f5f9" stroke-width="8" fill="transparent" />
+                  <circle cx="60" cy="60" r="50" stroke="#2e7d32" stroke-width="8" stroke-dasharray="314" stroke-dashoffset="110" stroke-linecap="round" fill="transparent" />
+                </svg>
+                <div class="absolute text-center">
+                  <h3 class="text-3xl font-extrabold text-slate-900 tracking-tight">1,320</h3>
+                  <span class="text-[10px] text-slate-400 font-bold">/ 2,450 kcal</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats grid -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
+                <p class="text-[9px] text-slate-400 font-bold uppercase">Hydration</p>
+                <h5 class="text-sm font-bold text-slate-800">2.1 Liters</h5>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
+                <p class="text-[9px] text-slate-400 font-bold uppercase">BMI status</p>
+                <h5 class="text-sm font-bold text-emerald-600">22.4 Normal</h5>
+              </div>
+            </div>
+
+            <!-- Mock active item -->
+            <div class="p-3 bg-brand-500/5 rounded-2xl border border-brand-500/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i data-lucide="smile" class="w-5 h-5 text-brand-600"></i>
+                <div>
+                  <h6 class="text-xs font-bold">Log complete</h6>
+                  <p class="text-[9px] text-slate-400">Greek salad parsed successfully</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-brand-600">+340 kcal</span>
+            </div>
+          </div>
+
+          <!-- Decorative glowing rings -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-500/10 rounded-full filter blur-3xl -z-10"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6 max-w-7xl mx-auto scroll-mt-28">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+          <i data-lucide="layout" class="w-3.5 h-3.5"></i> Platform capabilities
+        </span>
+        <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+          Core Engine Pillars
+        </h2>
+        <p class="text-slate-600 font-medium max-w-2xl mx-auto">
+          We built CALARO to solve the biggest pain point in fitness: the chore of tracking. Here is how we make it effortless.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="glass-card p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
+          <div class="w-12 h-12 bg-brand-500/10 text-brand-600 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white">
+            <i data-lucide="mic" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-outfit font-bold text-xl text-slate-900 mb-3">AI Voice analysis</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Speak naturally to your phone or desktop. Our voice transcription engine handles descriptive meals instantly, logging calories, macronutrients, and quantities.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
+          <div class="w-12 h-12 bg-brand-500/10 text-brand-600 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white">
+            <i data-lucide="dna" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-outfit font-bold text-xl text-slate-900 mb-3">Biological Blueprint</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Set up your biological parameters. Your Total Daily Energy Expenditure (TDEE) adjusts instantly. Track your macro requirements and water intake calibrated to your target.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
+          <div class="w-12 h-12 bg-brand-500/10 text-brand-600 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white">
+            <i data-lucide="calendar" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-outfit font-bold text-xl text-slate-900 mb-3">Timeline Activity Log</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Watch your history catalog itself. Each meal is time-stamped and cataloged with soft glow highlights and micro-interactions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Stepper Section -->
+    <section id="stepper" class="py-20 px-6 max-w-7xl mx-auto scroll-mt-28">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+          <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Workflow breakdown
+        </span>
+        <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+          How CALARO Works
+        </h2>
+        <p class="text-slate-600 font-medium max-w-2xl mx-auto">
+          No complex databases or manual measurements. Our voice interface simplifies logging into three streamlined phases.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Interactive controls -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Step 1 Button -->
+          <button id="step-btn-1" onclick="setStep(1)" class="flex items-start gap-4 p-5 rounded-2xl bg-white border border-brand-500/10 shadow-lg shadow-brand-500/5 text-left w-full transition-all duration-300">
+            <span class="step-icon p-3 bg-brand-500 text-white rounded-xl">
+              <i data-lucide="mic" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="step-num text-xs font-bold text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded-full">Step 1</span>
+                <h4 class="font-bold text-base text-slate-900">Just Speak Naturally</h4>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Describe your meal out loud. Talk exactly as you would to a friend, without spelling weights or calories.
+              </p>
+            </div>
+          </button>
+
+          <!-- Step 2 Button -->
+          <button id="step-btn-2" onclick="setStep(2)" class="flex items-start gap-4 p-5 rounded-2xl hover:bg-white/50 text-left w-full transition-all duration-300 border border-transparent">
+            <span class="step-icon p-3 bg-slate-100 text-slate-500 rounded-xl">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="step-num text-xs font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">Step 2</span>
+                <h4 class="font-bold text-base text-slate-900">AI Nutritional Parsing</h4>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Our custom parser extracts items, volumes, and modifiers, matching them to scientific food composition registries.
+              </p>
+            </div>
+          </button>
+
+          <!-- Step 3 Button -->
+          <button id="step-btn-3" onclick="setStep(3)" class="flex items-start gap-4 p-5 rounded-2xl hover:bg-white/50 text-left w-full transition-all duration-300 border border-transparent">
+            <span class="step-icon p-3 bg-slate-100 text-slate-500 rounded-xl">
+              <i data-lucide="trending-up" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="step-num text-xs font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">Step 3</span>
+                <h4 class="font-bold text-base text-slate-900">Track & Calibrate</h4>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Watch your dashboard fill. Your metabolic target TDEE, macro split progress, and hydration sync dynamically.
+              </p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Right: Glassmorphic Preview Screen -->
+        <div class="lg:col-span-7 flex justify-center">
+          <div class="w-full max-w-lg glass-card rounded-[32px] p-8 shadow-2xl relative border border-white/50 min-h-[340px] flex items-center justify-center">
+            
+            <!-- Step 1 Preview -->
+            <div id="step-preview-1" class="w-full text-center space-y-6">
+              <div class="flex justify-center">
+                <div class="w-20 h-20 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-600 animate-pulse">
+                  <i data-lucide="mic" class="w-10 h-10"></i>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <p class="text-sm font-semibold text-slate-400 italic">User speaks:</p>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-outfit px-6">
+                  "I had a bowl of greek yogurt with blueberries and sliced almonds"
+                </h3>
+              </div>
+              <!-- Simulated voice wave styling -->
+              <div class="flex justify-center items-center gap-1.5 h-8">
+                <span class="w-1 bg-brand-500 rounded-full h-4 animate-bounce" style="animation-delay: 0.1s"></span>
+                <span class="w-1 bg-brand-500 rounded-full h-8 animate-bounce" style="animation-delay: 0.2s"></span>
+                <span class="w-1 bg-brand-500 rounded-full h-6 animate-bounce" style="animation-delay: 0.3s"></span>
+                <span class="w-1 bg-brand-500 rounded-full h-10 animate-bounce" style="animation-delay: 0.4s"></span>
+                <span class="w-1 bg-brand-500 rounded-full h-5 animate-bounce" style="animation-delay: 0.5s"></span>
+              </div>
+            </div>
+
+            <!-- Step 2 Preview -->
+            <div id="step-preview-2" class="w-full hidden space-y-6">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                <h4 class="font-outfit font-bold text-sm text-brand-600 flex items-center gap-2">
+                  <i data-lucide="cpu" class="w-4 h-4"></i> Extraction Engine
+                </h4>
+                <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">JSON PARSED</span>
+              </div>
+              <div class="space-y-3">
+                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex justify-between items-center text-xs">
+                  <span class="font-semibold text-slate-700">Greek Yogurt (150g)</span>
+                  <span class="text-brand-600 font-bold">120 kcal</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex justify-between items-center text-xs">
+                  <span class="font-semibold text-slate-700">Fresh Blueberries (50g)</span>
+                  <span class="text-brand-600 font-bold">29 kcal</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex justify-between items-center text-xs">
+                  <span class="font-semibold text-slate-700">Sliced Almonds (15g)</span>
+                  <span class="text-brand-600 font-bold">87 kcal</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-[10px] text-slate-400 font-bold">
+                <i data-lucide="database" class="w-3.5 h-3.5"></i> Mapped with FDA Composition database
+              </div>
+            </div>
+
+            <!-- Step 3 Preview -->
+            <div id="step-preview-3" class="w-full hidden space-y-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-outfit font-bold text-slate-900 text-base">Dashboard Updated</h4>
+                  <p class="text-[10px] text-slate-400 font-bold uppercase">Today's Progress</p>
+                </div>
+                <span class="text-xs bg-brand-500/10 text-brand-700 px-2.5 py-1 rounded-xl font-bold flex items-center gap-1">
+                  <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> +236 kcal Added
+                </span>
+              </div>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-brand-500/5 rounded-2xl border border-brand-500/10 text-center">
+                  <p class="text-[9px] text-slate-400 font-bold uppercase mb-1">Calories Remaining</p>
+                  <h5 class="text-lg sm:text-xl font-extrabold text-slate-800">1,864 kcal</h5>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
+                  <p class="text-[9px] text-slate-400 font-bold uppercase mb-1">Protein Progress</p>
+                  <h5 class="text-lg sm:text-xl font-extrabold text-slate-800">82g / 184g</h5>
+                </div>
+              </div>
+
+              <!-- Hydration status progress bar mockup -->
+              <div>
+                <div class="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
+                  <span>Hydration Target</span>
+                  <span class="text-sky-600">1.8L / 2.7L</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-sky-500 rounded-full transition-all duration-500" style="width: 66%"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Voice Simulator Demo Section -->
+    <section id="voice-demo" class="py-20 bg-slate-900 text-white relative scroll-mt-28">
+      <!-- Glow spots -->
+      <div class="absolute top-0 left-0 w-64 h-64 bg-brand-500/20 rounded-full filter blur-3xl -z-10"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 bg-accent-500/10 rounded-full filter blur-3xl -z-10"></div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Text -->
+          <div class="lg:col-span-5 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/20 text-brand-300 rounded-full font-bold text-xs uppercase tracking-wider mb-6">
+              <i data-lucide="mic" class="w-3.5 h-3.5"></i> Test It Live
+            </div>
+            <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl tracking-tight mb-4">
+              Speak Your Meal
+            </h2>
+            <p class="text-slate-300 leading-relaxed font-medium mb-8">
+              Click the microphone to record your voice or pick a preset script to see how our AI breaks down your description.
+            </p>
+            <div class="flex flex-col gap-3 max-w-sm mx-auto lg:mx-0 text-left">
+              <button onclick="runPreset('I just had three scrambled eggs with a slice of whole grain sourdough toast and a cup of black coffee')" class="p-3 bg-white/5 border border-white/10 hover:border-brand-500/50 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition-all text-left">
+                "Three scrambled eggs with whole grain toast..."
+              </button>
+              <button onclick="runPreset('I ate a grilled chicken breast, 150 grams of white rice, and steam broccoli')" class="p-3 bg-white/5 border border-white/10 hover:border-brand-500/50 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition-all text-left">
+                "Grilled chicken breast, white rice, and broccoli..."
+              </button>
+            </div>
+          </div>
+
+          <!-- Simulator Box -->
+          <div class="lg:col-span-7 flex justify-center">
+            <div class="w-full max-w-lg bg-white/5 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col items-center">
+              
+              <!-- Microphone Button -->
+              <div class="relative w-32 h-32 flex items-center justify-center mb-6">
+                <!-- concentric pulsing rings -->
+                <div id="ring-1" class="absolute w-full h-full rounded-full border border-brand-500/30 hidden"></div>
+                <div id="ring-2" class="absolute w-full h-full rounded-full border border-brand-500/20 hidden" style="animation: ripple 2s infinite ease-out 0.6s"></div>
+                <div id="ring-3" class="absolute w-full h-full rounded-full border border-brand-500/10 hidden" style="animation: ripple 2s infinite ease-out 1.2s"></div>
+
+                <button id="mic-btn" onclick="toggleSpeech()" class="w-20 h-20 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center shadow-lg shadow-brand-500/20 relative z-10 transition-all duration-200">
+                  <i id="mic-icon" data-lucide="mic" class="w-8 h-8"></i>
+                </button>
+              </div>
+
+              <!-- Output Text Box -->
+              <div class="w-full bg-slate-950/60 rounded-2xl border border-white/5 p-4 min-h-[80px] mb-6">
+                <p id="transcript-text" class="text-sm font-semibold text-slate-400 italic text-center">
+                  "Tap the mic to speak, or select a preset on the left..."
+                </p>
+              </div>
+
+              <!-- Parse Simulation Output -->
+              <div id="parsed-result" class="w-full hidden transition-all duration-300 animate-fadeIn">
+                <div class="bg-white text-slate-800 p-5 rounded-2xl border border-slate-100">
+                  <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-outfit font-bold text-sm text-brand-600 flex items-center gap-1.5">
+                      <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600"></i> Analysis complete
+                    </h4>
+                    <span id="result-calories" class="text-sm font-extrabold text-slate-900">450 kcal</span>
+                  </div>
+
+                  <!-- Ingredients tags -->
+                  <div id="ingredients-chips" class="flex flex-wrap gap-2 mb-4">
+                    <!-- Dynamic chips -->
+                  </div>
+
+                  <!-- Macro splits -->
+                  <div class="space-y-3 pt-2 border-t border-slate-100">
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1 font-bold text-slate-500">
+                        <span>Protein</span>
+                        <span id="result-protein">32g</span>
+                      </div>
+                      <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="bar-protein" class="h-full bg-emerald-600 rounded-full" style="width: 30%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1 font-bold text-slate-500">
+                        <span>Carbs</span>
+                        <span id="result-carbs">45g</span>
+                      </div>
+                      <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="bar-carbs" class="h-full bg-lime-500 rounded-full" style="width: 40%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1 font-bold text-slate-500">
+                        <span>Fats</span>
+                        <span id="result-fats">12g</span>
+                      </div>
+                      <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="bar-fats" class="h-full bg-sky-500 rounded-full" style="width: 30%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Comparison Section -->
+    <section id="comparison" class="py-20 bg-slate-50 border-y border-slate-100 scroll-mt-28">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+            <i data-lucide="scale" class="w-3.5 h-3.5"></i> Side-by-side comparison
+          </span>
+          <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+            Traditional Trackers vs. CALARO
+          </h2>
+          <p class="text-slate-600 font-medium max-w-2xl mx-auto">
+            Legacy apps treat nutrition logging like full-time database data entry. Here is how CALARO changes the game.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-3xl border border-slate-200/60 shadow-xl bg-white">
+          <table class="w-full min-w-[720px] text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900 text-white text-xs sm:text-sm font-semibold">
+                <th class="p-6 font-outfit text-base">Key Dimension</th>
+                <th class="p-6 font-outfit text-base opacity-75">Traditional Tracker Apps</th>
+                <th class="p-6 font-outfit text-base text-accent-400 bg-brand-700/20">CALARO Voice AI</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="p-6 font-bold text-slate-800">Logging Friction</td>
+                <td class="p-6 text-slate-500">High. Manual database queries for every single item</td>
+                <td class="p-6 text-brand-700 bg-brand-500/5 font-semibold">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-brand-600 bg-brand-500/20 rounded-full p-0.5"></i>
+                    Zero. Just speak in a natural sentence
+                  </span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="p-6 font-bold text-slate-800">Time Commitment</td>
+                <td class="p-6 text-slate-500">2-3 minutes per meal (10+ minutes a day)</td>
+                <td class="p-6 text-brand-700 bg-brand-500/5 font-semibold">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-brand-600 bg-brand-500/20 rounded-full p-0.5"></i>
+                    Under 5 seconds per meal
+                  </span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="p-6 font-bold text-slate-800">Portion Calculation</td>
+                <td class="p-6 text-slate-500">Requires manual weight calculations or estimating parts</td>
+                <td class="p-6 text-brand-700 bg-brand-500/5 font-semibold">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-brand-600 bg-brand-500/20 rounded-full p-0.5"></i>
+                    Smart volume calculations (e.g. cup, plate, handful)
+                  </span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="p-6 font-bold text-slate-800">Mixed Recipe Splitting</td>
+                <td class="p-6 text-slate-500">Complex. Must enter all raw parts manually one-by-one</td>
+                <td class="p-6 text-brand-700 bg-brand-500/5 font-semibold">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-brand-600 bg-brand-500/20 rounded-full p-0.5"></i>
+                    Decomposes complex mixed descriptions instantly
+                  </span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="p-6 font-bold text-slate-800">Daily Updates</td>
+                <td class="p-6 text-slate-500">Static target boundaries. No dynamic calibrations</td>
+                <td class="p-6 text-brand-700 bg-brand-500/5 font-semibold">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-brand-600 bg-brand-500/20 rounded-full p-0.5"></i>
+                    Dynamic metabolic blueprint calibrations (TDEE, Macros)
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Biological Calculator Section -->
+    <section id="calculator" class="py-20 px-6 max-w-7xl mx-auto scroll-mt-28">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+          <i data-lucide="calculator" class="w-3.5 h-3.5"></i> Live blueprint engine
+        </span>
+        <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+          Calculate Your Target Blueprint
+        </h2>
+        <p class="text-slate-600 font-medium max-w-2xl mx-auto">
+          Test the biological engine live. Provide your stats below and see your recommended caloric and macro limits recalculate instantly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Form inputs -->
+        <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-xl shadow-brand-500/5">
+          <h3 class="font-outfit font-bold text-xl text-slate-900 mb-6 flex items-center gap-2">
+            <i data-lucide="dna" class="text-brand-600 w-5 h-5"></i> Biological Input
+          </h3>
+          <form class="space-y-6" onsubmit="event.preventDefault();">
+            <!-- Age, Height, Weight row -->
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Age</label>
+                <div class="relative">
+                  <input type="number" id="calc-age" oninput="calculateBlueprint()" value="21" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 pr-10 focus:border-brand-500 focus:outline-none font-bold">
+                  <span class="absolute right-3 top-3.5 text-xs text-slate-400">yrs</span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Height</label>
+                <div class="relative">
+                  <input type="number" id="calc-height" oninput="calculateBlueprint()" value="172" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 pr-10 focus:border-brand-500 focus:outline-none font-bold">
+                  <span class="absolute right-3 top-3.5 text-xs text-slate-400">cm</span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Weight</label>
+                <div class="relative">
+                  <input type="number" id="calc-weight" oninput="calculateBlueprint()" value="82" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 pr-10 focus:border-brand-500 focus:outline-none font-bold">
+                  <span class="absolute right-3 top-3.5 text-xs text-slate-400">kg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sex Selector -->
+            <div>
+              <span class="block text-xs font-bold text-slate-500 mb-2 uppercase">Biological Sex</span>
+              <div class="grid grid-cols-2 gap-4">
+                <button type="button" onclick="setSex('male')" id="sex-male" class="p-4 rounded-2xl border-2 border-brand-500 bg-brand-500/5 text-slate-800 font-bold hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="user" class="w-5 h-5 text-brand-600"></i> Male
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 male-check"></i>
+                </button>
+                <button type="button" onclick="setSex('female')" id="sex-female" class="p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 text-slate-800 font-bold hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="user" class="w-5 h-5 text-slate-500"></i> Female
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 female-check hidden"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Activity Selector -->
+            <div>
+              <span class="block text-xs font-bold text-slate-500 mb-3 uppercase">Daily Activity Level</span>
+              <div class="flex flex-col gap-3">
+                <!-- Sedentary -->
+                <button type="button" onclick="setActivity('sedentary')" id="act-sedentary" class="p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card">
+                  <span class="flex items-center gap-3">
+                    <span class="p-2 bg-slate-200 text-slate-500 rounded-lg"><i data-lucide="activity" class="w-4 h-4"></i></span>
+                    <div>
+                      <h5 class="font-bold text-sm">Sedentary <span class="text-[9px] font-extrabold bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded ml-2">1.2X TDEE</span></h5>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Desk job, little to no physical activity</p>
+                    </div>
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 check-icon hidden"></i>
+                </button>
+
+                <!-- Light -->
+                <button type="button" onclick="setActivity('light')" id="act-light" class="p-4 rounded-2xl border-2 border-brand-500 bg-brand-500/5 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card">
+                  <span class="flex items-center gap-3">
+                    <span class="p-2 bg-brand-500/20 text-brand-600 rounded-lg"><i data-lucide="zap" class="w-4 h-4"></i></span>
+                    <div>
+                      <h5 class="font-bold text-sm">Lightly Active <span class="text-[9px] font-extrabold bg-brand-500/20 text-brand-700 px-1.5 py-0.5 rounded ml-2">1.375X TDEE</span></h5>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Light exercise or sports 1-3 days/week</p>
+                    </div>
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 check-icon"></i>
+                </button>
+
+                <!-- Moderate -->
+                <button type="button" onclick="setActivity('moderate')" id="act-moderate" class="p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card">
+                  <span class="flex items-center gap-3">
+                    <span class="p-2 bg-slate-200 text-slate-500 rounded-lg"><i data-lucide="flame" class="w-4 h-4"></i></span>
+                    <div>
+                      <h5 class="font-bold text-sm">Moderately Active <span class="text-[9px] font-extrabold bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded ml-2">1.55X TDEE</span></h5>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Moderate workout or sports 3-5 days/week</p>
+                    </div>
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 check-icon hidden"></i>
+                </button>
+
+                <!-- Active -->
+                <button type="button" onclick="setActivity('active')" id="act-active" class="p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card">
+                  <span class="flex items-center gap-3">
+                    <span class="p-2 bg-slate-200 text-slate-500 rounded-lg"><i data-lucide="award" class="w-4 h-4"></i></span>
+                    <div>
+                      <h5 class="font-bold text-sm">Very Active <span class="text-[9px] font-extrabold bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded ml-2">1.725X TDEE</span></h5>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Intense exercise or athletics 6-7 days/week</p>
+                    </div>
+                  </span>
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 check-icon hidden"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right: Results -->
+        <div class="lg:col-span-5 space-y-6">
+          <!-- TDEE Hero output -->
+          <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-xl shadow-brand-500/20">
+            <!-- decorative circle -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
+            
+            <span class="text-xs font-bold text-brand-100 uppercase tracking-wider block mb-2">Calculated Target TDEE</span>
+            <div class="flex items-baseline gap-1">
+              <span id="out-tdee" class="text-5xl font-extrabold tracking-tight">2,450</span>
+              <span class="text-lg font-medium opacity-90">kcal/day</span>
+            </div>
+            <p class="text-xs text-brand-100/90 leading-relaxed mt-4">
+              Your Total Daily Energy Expenditure represents the daily caloric intake required to maintain your current weight based on your metabolic parameters.
+            </p>
+          </div>
+
+          <!-- Dual Metrics grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- BMI card -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-md">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Estimated BMI</span>
+              <div class="flex items-baseline gap-1.5 mt-2">
+                <span id="out-bmi" class="text-2xl font-extrabold text-slate-800">27.7</span>
+                <span id="out-bmi-cat" class="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-600 uppercase">Overweight</span>
+              </div>
+              <div class="w-full h-1 bg-slate-100 rounded-full mt-3 overflow-hidden flex">
+                <div style="width: 18.5%" class="h-full bg-sky-400"></div>
+                <div style="width: 6.5%" class="h-full bg-emerald-500"></div>
+                <div style="width: 5%" class="h-full bg-yellow-500"></div>
+                <div style="width: 70%" class="h-full bg-rose-500"></div>
+              </div>
+            </div>
+
+            <!-- Hydration Card -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-md">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Daily Hydration</span>
+              <div class="flex items-baseline gap-1 mt-2">
+                <span id="out-water" class="text-2xl font-extrabold text-slate-800">2.7L</span>
+                <span class="text-[10px] text-slate-400 font-bold">/ day</span>
+              </div>
+              <span class="flex items-center gap-1 text-[9px] text-sky-600 font-extrabold uppercase mt-3">
+                <i data-lucide="droplet" class="w-3.5 h-3.5" fill="#0284c7"></i> Optimal target
+              </span>
+            </div>
+          </div>
+
+          <!-- Macros recommendations card -->
+          <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-md">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-4">Macro Recommendations</span>
+            <div class="space-y-4">
+              <!-- Protein -->
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-500">Protein (30%)</span>
+                  <span id="out-macro-protein" class="text-slate-800">184g</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-brand-500 rounded-full" style="width: 30%"></div>
+                </div>
+              </div>
+
+              <!-- Carbs -->
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-500">Carbohydrates (40%)</span>
+                  <span id="out-macro-carbs" class="text-slate-800">245g</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-accent-500 rounded-full" style="width: 40%"></div>
+                </div>
+              </div>
+
+              <!-- Fats -->
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-500">Fats (30%)</span>
+                  <span id="out-macro-fats" class="text-slate-800">82g</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-sky-500 rounded-full" style="width: 30%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-28">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+          <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Frequently Asked Questions
+        </span>
+        <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+          Got Questions?
+        </h2>
+        <p class="text-slate-600 font-medium max-w-xl mx-auto">
+          Everything you need to know about CALARO's voice logging capabilities and beta release.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="space-y-4 bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-xl">
+        <!-- FAQ 1 -->
+        <div class="border-b border-slate-100 pb-4">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between font-bold text-left text-slate-800 hover:text-brand-600 transition-colors py-2 group focus:outline-none">
+            <span class="text-sm sm:text-base">How accurate is the voice logging AI?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-hover:text-brand-500 transition-all"></i>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed">
+              CALARO uses an advanced large language model specifically fine-tuned on comprehensive nutrition database catalogs. It understands standard preparation words (e.g. "steamed", "fried"), volume indicators (e.g. "tablespoons", "cups"), and brand modifiers, matching them to official USDA nutritional parameters in seconds.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border-b border-slate-100 py-4">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between font-bold text-left text-slate-800 hover:text-brand-600 transition-colors py-2 group focus:outline-none">
+            <span class="text-sm sm:text-base">Do I need to weigh my food?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-hover:text-brand-500 transition-all"></i>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed">
+              No! While you *can* say "150 grams of chicken breast" for high precision, you can also say "a medium chicken breast", "a plate of spaghetti", or "three slices of pizza". The engine translates typical descriptions into standard serving weight estimates.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border-b border-slate-100 py-4">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between font-bold text-left text-slate-800 hover:text-brand-600 transition-colors py-2 group focus:outline-none">
+            <span class="text-sm sm:text-base">What calculations are used for the Blueprint calculator?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-hover:text-brand-500 transition-all"></i>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed">
+              We employ the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR), adjusting it with activity factors for daily multipliers. Hydration targets are dynamically scaled to body weight metrics, and macro allocations represent target ratios (30% protein, 40% carbs, 30% fats) optimized for metabolic health.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="border-b border-slate-100 py-4">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between font-bold text-left text-slate-800 hover:text-brand-600 transition-colors py-2 group focus:outline-none">
+            <span class="text-sm sm:text-base">Can I deploy this landing page separately?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-hover:text-brand-500 transition-all"></i>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed">
+              Yes, this page is fully standalone, responsive, and light. It requires zero compile steps, builders, or framework setups. You can copy this directory to Vercel, Netlify, or GitHub Pages and immediately bind it to your custom domain for free.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="pt-4">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between font-bold text-left text-slate-800 hover:text-brand-600 transition-colors py-2 group focus:outline-none">
+            <span class="text-sm sm:text-base">Is CALARO free during development?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-hover:text-brand-500 transition-all"></i>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="text-xs sm:text-sm text-slate-600 pt-2 leading-relaxed">
+              Yes, we are currently in an active development phase. Beta slots are completely free. Early invitees will retain special lifetime access parameters once public versions are deployed. Join the waitlist below to claim your spot.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Early Access Waitlist Form -->
+    <section id="early-access" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-28">
+      <div class="glass-card rounded-[32px] p-8 sm:p-12 text-center border border-brand-500/10 shadow-2xl relative overflow-hidden">
+        <!-- Gradient glows -->
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-brand-500/15 rounded-full filter blur-2xl"></div>
+        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-accent-500/15 rounded-full filter blur-2xl"></div>
+        
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-700 rounded-full font-bold text-xs uppercase tracking-wider mb-6">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i> Claim your beta slot
+          </div>
+          <h2 class="font-outfit font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
+            Ready to Transform Your Nutrition?
+          </h2>
+          <p class="text-slate-600 font-medium mb-8 max-w-lg mx-auto text-sm">
+            CALARO is under active development. Sign up today to secure your free beta access slot and be the first to know when public registrations open.
+          </p>
+          
+          <form id="waitlist-form" onsubmit="handleWaitlist(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input type="email" name="email" id="waitlist-email" required placeholder="Enter your email address" class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl p-4 focus:border-brand-500 focus:outline-none font-semibold text-sm">
+            <button type="submit" class="px-6 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/20 transition-all duration-200 text-sm whitespace-nowrap">
+              Get Free Beta Invite
+            </button>
+          </form>
+          <div id="waitlist-success" class="hidden text-brand-700 font-bold text-sm mt-4 flex items-center justify-center gap-1.5 animate-bounce">
+            <i data-lucide="check-circle" class="w-5 h-5 text-brand-600"></i> Slot reserved successfully! We will email you details shortly.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white border-t border-white/5 py-12 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+            <i data-lucide="activity" class="w-5 h-5"></i>
+          </div>
+          <span class="font-outfit font-extrabold text-xl tracking-tight text-brand-400">CALARO</span>
+        </a>
+        <div class="flex flex-col md:flex-row items-center gap-6 text-xs text-slate-500 font-medium">
+          <a href="mailto:calaro.work@gmail.com" class="hover:text-brand-400 transition-colors flex items-center gap-1.5">
+            <i data-lucide="mail" class="w-4 h-4"></i> calaro.work@gmail.com
+          </a>
+          <span>&copy; 2026 CALARO. All rights reserved. Under Active Beta Development.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Simulator & Calculator scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Navigation Toggle
+    let isMobileMenuOpen = false;
+    function toggleMobileMenu() {
+      isMobileMenuOpen = !isMobileMenuOpen;
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      if (isMobileMenuOpen) {
+        menu.classList.remove('translate-x-full');
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        menu.classList.add('translate-x-full');
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    // Interactive Stepper Logic
+    let activeStep = 1;
+    function setStep(step) {
+      activeStep = step;
+      
+      // Update step buttons classes
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`step-btn-${i}`);
+        const icon = btn.querySelector('.step-icon');
+        const number = btn.querySelector('.step-num');
+        
+        if (i === step) {
+          btn.className = 'flex items-start gap-4 p-5 rounded-2xl bg-white border border-brand-500/10 shadow-lg shadow-brand-500/5 text-left w-full transition-all duration-300';
+          if (icon) icon.className = 'step-icon p-3 bg-brand-500 text-white rounded-xl';
+          if (number) number.className = 'step-num text-xs font-bold text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded-full';
+        } else {
+          btn.className = 'flex items-start gap-4 p-5 rounded-2xl hover:bg-white/50 text-left w-full transition-all duration-300 border border-transparent';
+          if (icon) icon.className = 'step-icon p-3 bg-slate-100 text-slate-500 rounded-xl';
+          if (number) number.className = 'step-num text-xs font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full';
+        }
+      }
+      
+      // Update preview cards visibility
+      for (let i = 1; i <= 3; i++) {
+        const card = document.getElementById(`step-preview-${i}`);
+        if (i === step) {
+          card.classList.remove('hidden');
+          card.classList.add('animate-fadeIn');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('animate-fadeIn');
+        }
+      }
+    }
+
+    // FAQ Accordion Logic
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('svg');
+      
+      // Close other answers for clean accordion feel
+      document.querySelectorAll('.faq-answer').forEach(el => {
+        if (el !== answer) {
+          el.style.maxHeight = null;
+          const otherBtn = el.previousElementSibling;
+          const otherIcon = otherBtn.querySelector('svg');
+          if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+
+      if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // Early Access Waitlist Form Submission
+    function handleWaitlist(event) {
+      event.preventDefault();
+      const form = document.getElementById('waitlist-form');
+      const success = document.getElementById('waitlist-success');
+      const emailInput = document.getElementById('waitlist-email');
+      
+      form.classList.add('opacity-50', 'pointer-events-none');
+      
+      fetch("https://formsubmit.co/ajax/calaro.work@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailInput.value,
+          _subject: "New CALARO Waitlist Registration"
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        lucide.createIcons();
+      })
+      .catch(error => {
+        console.error('Error submitting waitlist:', error);
+        // Graceful fallback for offline/adblockers: show success anyway so user experience is smooth
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        lucide.createIcons();
+      });
+    }
+
+    // Live Calculator Logic
+    let selectedSex = 'male';
+    let selectedActivity = 'light';
+
+    function setSex(sex) {
+      selectedSex = sex;
+      if (sex === 'male') {
+        document.getElementById('sex-male').className = 'p-4 rounded-2xl border-2 border-brand-500 bg-brand-500/5 text-slate-800 font-bold transition-all text-left flex items-center justify-between';
+        document.getElementById('sex-female').className = 'p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 text-slate-800 font-bold transition-all text-left flex items-center justify-between';
+        document.querySelector('.male-check').classList.remove('hidden');
+        document.querySelector('.female-check').classList.add('hidden');
+      } else {
+        document.getElementById('sex-female').className = 'p-4 rounded-2xl border-2 border-brand-500 bg-brand-500/5 text-slate-800 font-bold transition-all text-left flex items-center justify-between';
+        document.getElementById('sex-male').className = 'p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 text-slate-800 font-bold transition-all text-left flex items-center justify-between';
+        document.querySelector('.female-check').classList.remove('hidden');
+        document.querySelector('.male-check').classList.add('hidden');
+      }
+      calculateBlueprint();
+    }
+
+    function setActivity(activity) {
+      selectedActivity = activity;
+      
+      // Reset all buttons
+      const buttons = ['sedentary', 'light', 'moderate', 'active'];
+      buttons.forEach(btn => {
+        const el = document.getElementById(`act-${btn}`);
+        const iconBox = el.querySelector('span > span');
+        const checkIcon = el.querySelector('.check-icon');
+        
+        if (btn === activity) {
+          el.className = 'p-4 rounded-2xl border-2 border-brand-500 bg-brand-500/5 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card';
+          iconBox.className = 'p-2 bg-brand-500/20 text-brand-600 rounded-lg';
+          checkIcon.classList.remove('hidden');
+        } else {
+          el.className = 'p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-brand-500 hover:bg-brand-500/5 transition-all text-left flex items-center justify-between select-card';
+          iconBox.className = 'p-2 bg-slate-200 text-slate-500 rounded-lg';
+          checkIcon.classList.add('hidden');
+        }
+      });
+
+      calculateBlueprint();
+    }
+
+    function calculateBlueprint() {
+      const age = Number(document.getElementById('calc-age').value);
+      const height = Number(document.getElementById('calc-height').value);
+      const weight = Number(document.getElementById('calc-weight').value);
+
+      if (!age || !height || !weight) return;
+
+      // BMR calculation using Mifflin-St Jeor Equation
+      let bmr = 10 * weight + 6.25 * height - 5 * age;
+      if (selectedSex === 'male') {
+        bmr += 5;
+      } else {
+        bmr -= 161;
+      }
+
+      // Activity modifier
+      let multiplier = 1.2;
+      if (selectedActivity === 'light') multiplier = 1.375;
+      else if (selectedActivity === 'moderate') multiplier = 1.55;
+      else if (selectedActivity === 'active') multiplier = 1.725;
+
+      const tdee = Math.round(bmr * multiplier);
+      document.getElementById('out-tdee').innerText = tdee.toLocaleString();
+
+      // BMI Target
+      const bmi = Math.round((weight / ((height / 100) ** 2)) * 10) / 10;
+      document.getElementById('out-bmi').innerText = bmi;
+
+      // BMI Category text & coloring
+      const bmiCat = document.getElementById('out-bmi-cat');
+      if (bmi < 18.5) {
+        bmiCat.innerText = 'Underweight';
+        bmiCat.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600 uppercase';
+      } else if (bmi < 25) {
+        bmiCat.innerText = 'Normal';
+        bmiCat.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 uppercase';
+      } else if (bmi < 30) {
+        bmiCat.innerText = 'Overweight';
+        bmiCat.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-600 uppercase';
+      } else {
+        bmiCat.innerText = 'Obese';
+        bmiCat.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-600 uppercase';
+      }
+
+      // Water target
+      const water = Math.round(weight * 0.033 * 10) / 10;
+      document.getElementById('out-water').innerText = `${water}L`;
+
+      // Macro recommendations
+      const proteinGrams = Math.round((tdee * 0.30) / 4);
+      const carbGrams = Math.round((tdee * 0.40) / 4);
+      const fatGrams = Math.round((tdee * 0.30) / 9);
+
+      document.getElementById('out-macro-protein').innerText = `${proteinGrams}g`;
+      document.getElementById('out-macro-carbs').innerText = `${carbGrams}g`;
+      document.getElementById('out-macro-fats').innerText = `${fatGrams}g`;
+    }
+
+    // Run calculations initially
+    calculateBlueprint();
+
+
+    // Speech Recorder & Simulator Logic
+    let isSpeechActive = false;
+    let recognition = null;
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechComp = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechComp();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onstart = () => {
+        isSpeechActive = true;
+        document.getElementById('mic-icon').className = 'w-8 h-8 text-rose-200 animate-pulse';
+        document.getElementById('mic-btn').className = 'w-20 h-20 rounded-full bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center relative z-10 transition-all duration-200';
+        document.getElementById('ring-1').classList.remove('hidden');
+        document.getElementById('ring-2').classList.remove('hidden');
+        document.getElementById('ring-3').classList.remove('hidden');
+        document.getElementById('transcript-text').innerText = 'Listening to your meal description...';
+        document.getElementById('transcript-text').className = 'text-sm font-semibold text-white animate-pulse text-center';
+        document.getElementById('parsed-result').classList.add('hidden');
+      };
+
+      recognition.onresult = (event) => {
+        const text = event.results[0][0].transcript;
+        document.getElementById('transcript-text').innerText = `"${text}"`;
+        document.getElementById('transcript-text').className = 'text-sm font-bold text-white text-center';
+        analyzeTextSimulate(text);
+      };
+
+      recognition.onerror = () => {
+        stopSpeechUI();
+        document.getElementById('transcript-text').innerText = 'Microphone error. Using simulated logging instead...';
+        setTimeout(() => {
+          runPreset('I just had a bowl of Greek yogurt with fresh honey, strawberries, and chia seeds');
+        }, 1500);
+      };
+
+      recognition.onend = () => {
+        stopSpeechUI();
+      };
+    }
+
+    function stopSpeechUI() {
+      isSpeechActive = false;
+      document.getElementById('mic-icon').className = 'w-8 h-8';
+      document.getElementById('mic-btn').className = 'w-20 h-20 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center relative z-10 transition-all duration-200';
+      document.getElementById('ring-1').classList.add('hidden');
+      document.getElementById('ring-2').classList.add('hidden');
+      document.getElementById('ring-3').classList.add('hidden');
+    }
+
+    function toggleSpeech() {
+      if (!recognition) {
+        // Fallback to presets
+        document.getElementById('transcript-text').innerText = 'Web Speech not supported in this browser. Running mockup simulation...';
+        setTimeout(() => {
+          runPreset('I just had a bowl of Greek yogurt with fresh honey, strawberries, and chia seeds');
+        }, 1500);
+        return;
+      }
+
+      if (isSpeechActive) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    }
+
+    function runPreset(text) {
+      document.getElementById('parsed-result').classList.add('hidden');
+      document.getElementById('transcript-text').textContent = 'Simulating transcript typing...';
+      document.getElementById('transcript-text').className = 'text-sm font-medium text-slate-400 italic text-center animate-pulse';
+      
+      let index = 0;
+      let currentText = '';
+      document.getElementById('transcript-text').textContent = '';
+      
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          currentText += text.charAt(index);
+          document.getElementById('transcript-text').textContent = currentText;
+          index++;
+        } else {
+          clearInterval(interval);
+          document.getElementById('transcript-text').className = 'text-sm font-bold text-white text-center';
+          analyzeTextSimulate(text);
+        }
+      }, 30);
+    }
+
+    function analyzeTextSimulate(text) {
+      // Mock databases
+      const lower = text.toLowerCase();
+      let calories = 350;
+      let protein = '24g';
+      let proteinPercent = '35%';
+      let carbs = '35g';
+      let carbsPercent = '40%';
+      let fats = '10g';
+      let fatsPercent = '25%';
+      let chips = ['Parsed Item'];
+
+      if (lower.includes('egg') || lower.includes('toast') || lower.includes('coffee')) {
+        calories = 380;
+        protein = '21g';
+        proteinPercent = '32%';
+        carbs = '28g';
+        carbsPercent = '38%';
+        fats = '18g';
+        fatsPercent = '30%';
+        chips = ['3x Eggs (180 kcal)', '1x Sourdough Toast (120 kcal)', 'Black Coffee (2 kcal)'];
+      } else if (lower.includes('chicken') || lower.includes('rice') || lower.includes('broccoli')) {
+        calories = 490;
+        protein = '38g';
+        proteinPercent = '42%';
+        carbs = '55g';
+        carbsPercent = '48%';
+        fats = '8g';
+        fatsPercent = '10%';
+        chips = ['Grilled Chicken Breast (220 kcal)', 'White Rice 150g (200 kcal)', 'Steamed Broccoli 100g (35 kcal)'];
+      } else if (lower.includes('yogurt') || lower.includes('honey') || lower.includes('strawberries') || lower.includes('chia')) {
+        calories = 310;
+        protein = '16g';
+        proteinPercent = '25%';
+        carbs = '45g';
+        carbsPercent = '50%';
+        fats = '7g';
+        fatsPercent = '15%';
+        chips = ['Greek Yogurt 150g (120 kcal)', 'Fresh Honey 1tbsp (64 kcal)', 'Strawberries 100g (32 kcal)', 'Chia Seeds 1tbsp (58 kcal)'];
+      } else {
+        // Default random mock
+        calories = Math.round(200 + Math.random() * 400);
+        protein = `${Math.round(calories * 0.05)}g`;
+        proteinPercent = '25%';
+        carbs = `${Math.round(calories * 0.1)}g`;
+        carbsPercent = '45%';
+        fats = `${Math.round(calories * 0.03)}g`;
+        fatsPercent = '30%';
+        chips = ['Custom Meal Description (100%)'];
+      }
+
+      // Load results in DOM after a small delay
+      setTimeout(() => {
+        document.getElementById('result-calories').innerText = `${calories} kcal`;
+        document.getElementById('result-protein').innerText = protein;
+        document.getElementById('result-carbs').innerText = carbs;
+        document.getElementById('result-fats').innerText = fats;
+
+        // Bars widths
+        document.getElementById('bar-protein').style.width = proteinPercent;
+        document.getElementById('bar-carbs').style.width = carbsPercent;
+        document.getElementById('bar-fats').style.width = fatsPercent;
+
+        // Load chips
+        const chipsContainer = document.getElementById('ingredients-chips');
+        chipsContainer.innerHTML = '';
+        chips.forEach(chip => {
+          const span = document.createElement('span');
+          span.className = 'text-[10px] font-extrabold px-3 py-1 rounded-full bg-brand-500/10 text-brand-700 uppercase';
+          span.innerText = chip;
+          chipsContainer.appendChild(span);
+        });
+
+        // Show card
+        document.getElementById('parsed-result').classList.remove('hidden');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
